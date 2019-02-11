@@ -1,7 +1,13 @@
 import React from "react";
-import styled, { css } from 'styled-components';
+import styled, { createGlobalStyle } from 'styled-components';
 import { Image } from '../App';
 import Posts from '../Posts';
+
+const OverflowHidden = createGlobalStyle`
+    body {
+        overflow: hidden;
+    }
+`;
 
 const ModalStyled = styled.div`
     position: absolute;
@@ -32,17 +38,19 @@ const Modal = ({ match, history }) => {
           left: 0,
           bottom: 0,
           right: 0,
-          background: "rgba(0, 0, 0, 0.15)"
+          height: '5000px',
+          background: "rgba(0, 0, 0, 0.8)"
         }}
       >
         <ModalStyled
             top={window.scrollY + (window.innerHeight / 2) - 250}
         >
-          <h1>{image.title}</h1>
-          <Image inModal index={image.id} />
-          <button type="button" onClick={back}>
-            Close
-          </button>
+            <OverflowHidden />
+            <h1>{image.title}</h1>
+            <Image inModal index={image.id} />
+            <button type="button" onClick={back}>
+                Close
+            </button>
         </ModalStyled>
       </div>
     );
