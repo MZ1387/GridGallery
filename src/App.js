@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 // This example shows how to render two different screens
 // (or the same screen in a different context) at the same url,
@@ -64,6 +64,11 @@ const Image = styled.div`
   width: 305px;
   height: 305px;
   background: no-repeat center/150% url(/img/${(props) => props.index}.jpeg);
+  ${(props) => !props.inModal && css`
+    :hover {
+      opacity: .7;
+    }
+  `}
 `
 
 const IMAGES = [
@@ -175,7 +180,7 @@ function Modal({ match, history }) {
         }}
       >
         <h1>{image.title}</h1>
-        <Image index={image.id} />
+        <Image inModal index={image.id} />
         <button type="button" onClick={back}>
           Close
         </button>
