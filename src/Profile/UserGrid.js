@@ -1,5 +1,6 @@
 import React from "react";
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
+import ProfileImage from "./ProfileImage";
 
 const UserGridStyled = styled.div`
     display: grid;
@@ -18,6 +19,7 @@ const Photo = styled.div`
 
 const Name = styled.div`
     grid-area: name;
+    font-size: 35px;
 `;
 
 const Label = styled.div`
@@ -26,16 +28,23 @@ const Label = styled.div`
 
 const Description = styled.div`
     grid-area: description;
+    max-width: 400px;
 `;
 
 
 export default () => {
     return (
         <UserGridStyled>
-            <Photo>Photo</Photo>
+            <Photo>
+                <ProfileImage />
+            </Photo>
             <Name>Name</Name>
-            <Label>Label</Label>
-            <Description>Description</Description>
+            <Label>
+                <strong>13,000</strong> Followers
+            </Label>
+            <Description>
+                Hoodie artisan wayfarers kitsch gentrify hella deep v. Hella hammock hexagon helvetica leggings, organic jean shorts slow-carb readymade letterpress wolf. Live-edge sartorial freegan kickstarter kombucha. Subway tile whatever wolf sriracha you probably haven't heard of them brooklyn franzen flexitarian keffiyeh gluten-free iPhone roof party. Hashtag pug hot chicken shabby chic crucifix franzen sartorial copper mug drinking vinegar helvetica.
+            </Description>
         </UserGridStyled>
     );
 }
