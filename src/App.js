@@ -2,6 +2,8 @@ import React from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import styled, { css } from 'styled-components';
 import UserGrid from "./Profile/UserGrid";
+import Modal from './Modal/Modal';
+import Posts from './Posts';
 
 // This example shows how to render two different screens
 // (or the same screen in a different context) at the same url,
@@ -61,7 +63,7 @@ class ModalSwitch extends React.Component {
   }
 }
 
-const Image = styled.div`
+export const Image = styled.div`
   width: 305px;
   height: 305px;
   background: no-repeat center/150% url(/img/${(props) => props.index}.jpeg);
@@ -70,23 +72,7 @@ const Image = styled.div`
       opacity: .7;
     }
   `}
-`
-
-const IMAGES = [
-  { id: 1, title: "Blue Palms" },
-  { id: 2, title: "Purple Palms" },
-  { id: 3, title: "Desert Palms" },
-  { id: 4, title: "Sunset Palms" },
-  { id: 5, title: "Yellow Red Flowers" },
-  { id: 6, title: "Mountain Lake" },
-  { id: 7, title: "Ocean Resort" },
-  { id: 8, title: "Crane" },
-  { id: 9, title: "Ocean" },
-  { id: 10, title: "Lunch" },
-  { id: 11, title: "Card" },
-  { id: 12, title: "Valley" },
-  { id: 13, title: "Blue Branch" }
-];
+`;
 
 function Home() {
   return (
@@ -117,7 +103,7 @@ function Gallery() {
     <div>
       <UserGrid />
       <PhotoGrid>
-        {IMAGES.map(i => (
+        {Posts.map(i => (
           <Link
             key={i.id}
             to={{
@@ -135,7 +121,7 @@ function Gallery() {
 }
 
 function ImageView({ match }) {
-  let image = IMAGES[parseInt(match.params.id, 10) - 1];
+  let image = Posts[parseInt(match.params.id, 10) - 1];
 
   if (!image) return <div>Image not found</div>;
 
@@ -143,50 +129,6 @@ function ImageView({ match }) {
     <div>
       <h1>{image.title}</h1>
       <Image index={image.id} />
-    </div>
-  );
-}
-
-function Modal({ match, history }) {
-  let image = IMAGES[parseInt(match.params.id, 10) - 1];
-
-  if (!image) return null;
-
-  let back = e => {
-    e.stopPropagation();
-    history.goBack();
-  };
-
-  return (
-    <div
-      onClick={back}
-      style={{
-        position: "absolute",
-        top: 0,
-        left: 0,
-        bottom: 0,
-        right: 0,
-        background: "rgba(0, 0, 0, 0.15)"
-      }}
-    >
-      <div
-        className="modal"
-        style={{
-          position: "absolute",
-          background: "#fff",
-          top: 25,
-          left: "10%",
-          right: "10%",
-          padding: 15,
-          border: "2px solid #444"
-        }}
-      >
-        <h1>{image.title}</h1>
-        <Image inModal index={image.id} />
-        <button type="button" onClick={back}>
-          Close
-        </button>
-      </div>
     </div>
   );
 }
