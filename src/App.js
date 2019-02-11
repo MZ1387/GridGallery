@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import styled, { css } from 'styled-components';
+import UserGrid from "./Profile/UserGrid";
 
 // This example shows how to render two different screens
 // (or the same screen in a different context) at the same url,
@@ -108,27 +109,28 @@ const PhotoGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 305px);
   gap: 20px;
-  width: 950px;
-  margin: auto;
-  margin-top: 80px;
+  justify-content: center;
 `;
 
 function Gallery() {
   return (
-    <PhotoGrid>
-      {IMAGES.map(i => (
-        <Link
-          key={i.id}
-          to={{
-            pathname: `/img/ ${i.id}`,
-            // this is the trick!
-            state: { modal: true }
-          }}
-        >
-          <Image index={i.id} />
-        </Link>
-      ))}
-    </PhotoGrid>
+    <div>
+      <UserGrid />
+      <PhotoGrid>
+        {IMAGES.map(i => (
+          <Link
+            key={i.id}
+            to={{
+              pathname: `/img/ ${i.id}`,
+              // this is the trick!
+              state: { modal: true }
+            }}
+          >
+            <Image index={i.id} />
+          </Link>
+        ))}
+      </PhotoGrid>
+    </div>
   );
 }
 
