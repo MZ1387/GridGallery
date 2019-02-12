@@ -53,33 +53,23 @@ class ModalSwitch extends React.Component {
     return (
       <div>
         <Switch location={isModal ? this.previousLocation : location}>
-          <Route exact path="/" component={Home} />
-          <Route path="/gallery" component={Gallery} />
-          <Route path="/img/:id" component={ImageView} />
+          <Route exact path="/" component={Gallery} />
+          <Route path="/img/:id" component={Modal} />
         </Switch>
         {isModal ? <Route path="/img/:id" component={Modal} /> : null}
       </div>
     );
   }
-}
-
-export const ImageLink = styled(Link)`
-  background: no-repeat center/150% url(/img/${(props) => props.index}.jpeg);
-  :hover {
-    opacity: .7;
-  }
-  ${(props) => props.cascade && css`
-    background-size: cover;
-
-    &:nth-of-type(2n) {
-      grid-row-start: span 2;
-    }
-  `}
-`;
+};
 
 export const Image = styled.div`
   width: 305px;
   height: 305px;
+
+  @media (max-width: 990px) {
+    width: 100%;
+  }
+
   background: no-repeat center/150% url(/img/${(props) => props.index}.jpeg);
   ${(props) => !props.inModal && css`
     :hover {
@@ -87,36 +77,6 @@ export const Image = styled.div`
     }
   `}
 `;
-
-function Home() {
-  return (
-    <div>
-      <Link to="/gallery">Visit the Gallery</Link>
-      <h2>Featured Images</h2>
-      <ul>
-        <li>
-          <Link to="/img/2">Tomato</Link>
-        </li>
-        <li>
-          <Link to="/img/4">Crimson</Link>
-        </li>
-      </ul>
-    </div>
-  );
-};
-
-function ImageView({ match }) {
-  let image = Posts[parseInt(match.params.id, 10) - 1];
-
-  if (!image) return <div>Image not found</div>;
-
-  return (
-    <div>
-      <h1>{image.title}</h1>
-      <ImageLink index={image.id} />
-    </div>
-  );
-}
 
 function ModalGallery() {
   return (

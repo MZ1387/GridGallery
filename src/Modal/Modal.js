@@ -13,13 +13,20 @@ const OverflowHidden = createGlobalStyle`
 `;
 
 const ModalStyled = styled.div`
-    position: absolute;
-    background: #fff;
-    top: ${(props) => props.top}px;
-    left: 25%;
-    right: 25%;
-    width: 600px;
-    border: 2px solid #444;
+  position: absolute;
+  background: #fff;
+  top: ${(props) => props.top}px;
+  left: 25%;
+  right: 25%;
+  width: 600px;
+  border: 2px solid #444;
+
+  @media(max-width: 990px){
+    left: 0; 
+    right: 0; 
+    top: ${({top}) => top}px; 
+    width: auto; 
+  }
 `;
 
 const Modal = ({ match, history }) => {

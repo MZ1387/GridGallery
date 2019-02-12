@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styled, { css } from 'styled-components';
 import UserGrid from '../Profile/UserGrid';
-import { ImageLink } from '../App';
 import Posts from '../Posts';
 
 const PhotoGrid = styled.div`
@@ -15,6 +14,12 @@ const PhotoGrid = styled.div`
         grid-auto-rows: 200px;
         grid-gap: 5px;
     `}
+
+    @media (max-width: 990px) {
+        gap: 5px; 
+        grid-template-columns: repeat(3, 1fr); 
+        grid-auto-rows: calc(33vw - 10px); 
+    }
 `;
 
 const LinkGrid = styled.div`
@@ -33,6 +38,21 @@ const TabLink = styled(Link)`
     ${(props) => props.selected && css`
         color: black;
     `}
+`;
+
+const ImageLink = styled(Link)`
+  background: no-repeat center/150% url(/img/${(props) => props.index}.jpeg);
+  :hover {
+    opacity: .7;
+  }
+  
+  ${(props) => props.cascade && css`
+    background-size: cover;
+
+    &:nth-of-type(2n) {
+      grid-row-start: span 2;
+    }
+  `}
 `;
 
 export default ({ match, location }) => {
