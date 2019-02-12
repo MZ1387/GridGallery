@@ -63,6 +63,20 @@ class ModalSwitch extends React.Component {
   }
 }
 
+export const ImageLink = styled(Link)`
+  background: no-repeat center/150% url(/img/${(props) => props.index}.jpeg);
+  :hover {
+    opacity: .7;
+  }
+  ${(props) => props.cascade && css`
+    background-size: cover;
+
+    &:nth-of-type(2n) {
+      grid-row-start: span 2;
+    }
+  `}
+`;
+
 export const Image = styled.div`
   width: 305px;
   height: 305px;
@@ -99,7 +113,7 @@ function ImageView({ match }) {
   return (
     <div>
       <h1>{image.title}</h1>
-      <Image index={image.id} />
+      <ImageLink index={image.id} />
     </div>
   );
 }

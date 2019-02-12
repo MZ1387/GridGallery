@@ -2,14 +2,19 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styled, { css } from 'styled-components';
 import UserGrid from '../Profile/UserGrid';
-import { Image } from '../App';
+import { ImageLink } from '../App';
 import Posts from '../Posts';
 
 const PhotoGrid = styled.div`
     display: grid;
     grid-template-columns: repeat(3, 305px);
-    gap: 20px;
     justify-content: center;
+    gap: 20px;
+    grid-auto-rows: 305px;
+    ${(props) => props.cascade && css`
+        grid-auto-rows: 200px;
+        grid-gap: 5px;
+    `}
 `;
 
 const LinkGrid = styled.div`
@@ -49,18 +54,18 @@ export default ({ match, location }) => {
                 Cascade
             </TabLink>
         </LinkGrid>
-        <PhotoGrid>
+        <PhotoGrid cascade={cascade}>
             {Posts.map(i => (
-            <Link
+            <ImageLink
                 key={i.id}
+                index={i.id}
+                cascade={cascade}
                 to={{
                 pathname: `/img/ ${i.id}`,
                 // this is the trick!
                 state: { modal: true }
                 }}
-            >
-                <Image index={i.id} />
-            </Link>
+            />
             ))}
         </PhotoGrid>
         </div>
