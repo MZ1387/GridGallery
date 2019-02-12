@@ -1,18 +1,8 @@
 import React from "react";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import styled, { css } from 'styled-components';
 import Gallery from "./Gallery/Gallery";
 import Modal from './Modal/Modal';
-import Posts from './Posts';
-
-// This example shows how to render two different screens
-// (or the same screen in a different context) at the same url,
-// depending on how you got there.
-//
-// Click the colors and see them full screen, then "visit the
-// gallery" and click on the colors. Note the URL and the component
-// are the same as before but now we see them inside a modal
-// on top of the old screen.
 
 class ModalSwitch extends React.Component {
   // We can pass a location to <Switch/> that will tell it to
@@ -80,7 +70,7 @@ export const Image = styled.div`
 
 function ModalGallery() {
   return (
-    <Router basename="/React_Grid-Gallery">
+    <Router basename="React_Grid-Gallery">
       <Route component={ModalSwitch} />
     </Router>
   );

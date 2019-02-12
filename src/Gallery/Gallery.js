@@ -16,9 +16,9 @@ const PhotoGrid = styled.div`
     `}
 
     @media (max-width: 990px) {
-        gap: 5px; 
-        grid-template-columns: repeat(3, 1fr); 
-        grid-auto-rows: calc(33vw - 10px); 
+        gap: 5px;
+        grid-template-columns: repeat(3, 1fr);
+        grid-auto-rows: calc(33vw - 10px);
     }
 `;
 
@@ -41,11 +41,11 @@ const TabLink = styled(Link)`
 `;
 
 const ImageLink = styled(Link)`
-  background: no-repeat center/150% url(/img/${(props) => props.index}.jpeg);
+  background: no-repeat center/150% url(./img/${(props) => props.index}.jpeg);
   :hover {
     opacity: .7;
   }
-  
+
   ${(props) => props.cascade && css`
     background-size: cover;
 
@@ -61,15 +61,15 @@ export default ({ match, location }) => {
         <div>
         <UserGrid />
         <LinkGrid>
-            <TabLink 
+            <TabLink
                 selected={!cascade}
-                to={`${match.url}`} 
+                to={`${match.url}`}
             >
                 Square
             </TabLink>
             <TabLink
                 selected={cascade}
-                to={{ pathname: `${match.url}`, search:"?type=cascade" }} 
+                to={{ pathname: `${match.url}`, search:"?type=cascade" }}
             >
                 Cascade
             </TabLink>
