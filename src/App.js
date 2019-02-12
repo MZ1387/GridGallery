@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { HashRouter as Router, Switch, Route, Link } from "react-router-dom";
 import styled, { css } from 'styled-components';
 import Gallery from "./Gallery/Gallery";
 import Modal from './Modal/Modal';
@@ -80,7 +80,7 @@ export const Image = styled.div`
 
 function ModalGallery() {
   return (
-    <Router>
+    <Router basename="/React_Grid-Gallery">
       <Route component={ModalSwitch} />
     </Router>
   );
