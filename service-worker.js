@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/GridGallery/precache-manifest.cec29f201eeb9cc9a44138452adcb75a.js"
+  "/React_Grid-Gallery/precache-manifest.691a26a67298240ad17812f364db31a6.js"
 );
 
 workbox.clientsClaim();
@@ -28,7 +28,7 @@ self.__precacheManifest = [].concat(self.__precacheManifest || []);
 workbox.precaching.suppressWarnings();
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
 
-workbox.routing.registerNavigationRoute("/GridGallery/index.html", {
+workbox.routing.registerNavigationRoute("/React_Grid-Gallery/index.html", {
   
   blacklist: [/^\/_/,/\/[^\/]+\.[^\/]+$/],
 });
