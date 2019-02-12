@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import styled, { css } from 'styled-components';
-import UserGrid from "./Profile/UserGrid";
+import Gallery from "./Gallery/Gallery";
 import Modal from './Modal/Modal';
 import Posts from './Posts';
 
@@ -89,36 +89,7 @@ function Home() {
       </ul>
     </div>
   );
-}
-
-const PhotoGrid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(3, 305px);
-  gap: 20px;
-  justify-content: center;
-`;
-
-function Gallery() {
-  return (
-    <div>
-      <UserGrid />
-      <PhotoGrid>
-        {Posts.map(i => (
-          <Link
-            key={i.id}
-            to={{
-              pathname: `/img/ ${i.id}`,
-              // this is the trick!
-              state: { modal: true }
-            }}
-          >
-            <Image index={i.id} />
-          </Link>
-        ))}
-      </PhotoGrid>
-    </div>
-  );
-}
+};
 
 function ImageView({ match }) {
   let image = Posts[parseInt(match.params.id, 10) - 1];
