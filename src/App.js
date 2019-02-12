@@ -1,5 +1,5 @@
 import React from "react";
-import { HashRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import styled, { css } from 'styled-components';
 import Gallery from "./Gallery/Gallery";
 import Modal from './Modal/Modal';
@@ -70,7 +70,7 @@ export const Image = styled.div`
     width: 100%;
   }
 
-  background: no-repeat center/150% url(/img/${(props) => props.index}.jpeg);
+  background: no-repeat center/150% url(./img/${(props) => props.index}.jpeg);
   ${(props) => !props.inModal && css`
     :hover {
       opacity: .7;
